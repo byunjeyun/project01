@@ -6,6 +6,8 @@ import JobsView  from '../views/JobsView.vue';
 import ItemView  from '../views/ItemView.vue';
 import UserView  from '../views/UserView.vue';
 import tuigridView  from '../views/tuigridView.vue';
+import VendMaster  from '../views/VendMaster.vue';
+import SmEmployee  from '../views/SmEmployee.vue';
 
 Vue.use(VueRouter);
 
@@ -39,7 +41,15 @@ export const router = new VueRouter({
         {
             path:'/tuigrid',
             component:tuigridView,
-        }
+        },
+        {
+            path:'/vendmst',
+            component:VendMaster,
+        },
+        {
+            path:'/smemp',
+            component:SmEmployee,
+        },
     ]
 });
 

@@ -11,7 +11,10 @@
       <button-pack slot="default"></button-pack>
     </div>  
     <!-- <search-option></search-option> -->
-    <router-view></router-view>
+    <router-view>
+      <slot></slot>
+    </router-view>
+    <JobMessage></JobMessage>
   </div>
 </template>
 
@@ -20,8 +23,9 @@ import ToolBar from './components/ToolBar.vue';
 import ButtonPack from './components/ButtonPack.vue';
 // import SearchOption from './components/SearchOption.vue';
 import ProgramName from './components/ProgramName.vue';
+import JobMessage from './components/JobMessage.vue';
 export default {
-  components: { ToolBar, ButtonPack, ProgramName },
+  components: { ToolBar, ButtonPack, ProgramName, JobMessage },
  
 }
 </script>

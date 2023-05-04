@@ -1,43 +1,75 @@
 <template>
-    <div class="button" >
-      <div>
+  <div class="button">
+    <div>
       <slot></slot>
-      </div>  
-        <button class="btn-theme" data-preset="default">Search</button>
-        <button class="btn-theme" data-preset="default">Add</button>
-        <button class="btn-theme" data-preset="default">Save</button>
-        <button class="btn-theme" data-preset="default">Delete</button>
-        <button class="btn-theme" data-preset="default">Excel</button>
-        <button class="btn-theme" data-preset="default">Excel</button>
-      </div>
-  </template>
-  
-  <script>
-  import 'tui-grid/dist/tui-grid.css';
-  export default {
-  
-  }
-  </script>
-  
-  <style scoped>
-  .button {
-    float : right;
-  }
+    </div>
+    <button
+      v-for="button in buttons"
+      :key="button.type"
+      :class="'btn-theme btn-' + button.type"
+      :data-preset="button.preset"
+       @click="button.type === 'search' && fetchMatmstList('partno')"
+    >
+      {{ button.name }}
+    </button>
+  </div>
+</template>
 
-  .btn-theme{
-    background-color: #def;
-    margin:3px;
-    border:1px;
-    padding:10px;
-    width : 80px;
+<script>
+import { fetchMatmstList } from '../api/index.js';
+
+export default {
+  props: {
+    buttons: {
+      type: Array,
+      required: true,
+      default: () => [
+        { name: 'Search', type: 'search', preset: 'default' },
+        { name: 'Add', type: 'add', preset: 'default' },
+        { name: 'Save', type: 'save', preset: 'default' },
+        { name: 'Delete', type: 'delete', preset: 'default' },
+        { name: 'Excel↑', type: 'excelup', preset: 'default' },
+        { name: 'Excel↓', type: 'exceldown', preset: 'default' },
+      ],
+    },
+  },
+  methods: {
     
+    handleButtonClick(button) {
+      if (button.type === 'search') {
+        fetchMatmstList('partno_value')
+      this.$store.dispatch('FETCH_MATMST')
+      }   
+    },
   }
+};
+</script>
 
-  .btn-theme:hover {
-    background-color: #cde;
-    font-weight: bold;
-  }
+<style scoped>
+.button {
+  float: right;
+}
 
-  @import 'https://uicdn.toast.com/tui-grid/latest/tui-grid.css';
+.btn-theme {
+  background-color: #def;
+  margin: 3px;
+  border: 1px;
+  padding: 10px;
+  width: 80px;
+}
 
-  </style>
+.btn-theme:hover {
+  background-color: #cde;
+  font-weight: bold;
+}
+
+.btn-search {
+  /* Custom styles for search button */
+}
+
+.btn-add {
+  /* Custom styles for add button */
+}
+
+/* Add custom styles for other button types */
+</style>

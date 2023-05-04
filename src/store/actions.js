@@ -1,4 +1,4 @@
-import {fetchAsksList, fetchUsersList,fetchJobsList, fetchMatmstList} from '../api/index.js';
+import {fetchAsksList, fetchUsersList,fetchJobsList, fetchMatmstList, fetchVendmstList, fetchSmempList, fetchVendmstSm, fetchVtypeList} from '../api/index.js';
 
 export default {
     FETCH_ASK(context){
@@ -42,5 +42,62 @@ export default {
         .catch(error => {
             console.log(error);
         });   
-    } ,        
+    } ,     
+    FETCH_VENDMST({commit}){
+        fetchVendmstList()
+        .then(({items, results}) => {
+            commit('SET_VENDMST', items);
+            console.log('actionVend', items);
+            commit('SET_VENDMSTJOB', results);
+            console.log('actionVendjob', results);
+        })
+        
+        .catch(error => {
+            console.log(error);
+        });   
+    },     
+
+    // FETCH_VENDJOBLIST({commit}){
+    //     fetchVendmstList()
+    //     .then(jobList => {
+    //         commit('SET_VENDMSTJOB', jobList);
+    //         console.log('actionVendjob', jobList);
+    //     })
+    //     .catch(error => {
+    //         console.log(error);
+    //     });   
+    // },     
+
+    FETCH_SMEMP({commit}){
+        fetchSmempList()
+        .then(empGridList=> {
+            commit('SET_SMEMP', empGridList);
+            console.log('action', empGridList);
+        })
+        .catch(error => {
+            console.log(error);
+        });   
+    },       
+
+    FETCH_VENDMSTSM({commit}){
+        fetchVendmstSm()
+        .then(vendComboList => {
+            commit('SET_VENDMSTSM', vendComboList);
+            console.log('actioncombox', vendComboList);
+        })
+        .catch(error => {
+            console.log(error);
+        });   
+    },  
+
+    FETCH_VTYPCOMBOLIST({commit}){
+        fetchVtypeList()
+        .then(vtypComboList => {
+            commit('SET_SMCOMBOLIST', vtypComboList);
+            console.log('actionvtyp', vtypComboList);
+        })
+        .catch(error => {
+            console.log(error);
+        });   
+    },  
 }

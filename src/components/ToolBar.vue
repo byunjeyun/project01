@@ -5,8 +5,8 @@
     <router-link to="/jobs">    TRANSACTION</router-link> 
     <router-link to="/user">    INVENTORY</router-link> 
     <router-link to="/tuigrid"> ABNORMAL</router-link> 
-    <router-link to="/tuigrid"> EXPORT</router-link> 
-    <router-link to="/tuigrid"> STATISTICS</router-link> 
+    <router-link to="/vendmst"> EXPORT</router-link> 
+    <router-link to="/smemp"> STATISTICS</router-link> 
     <div class="dropdown">
       <router-link to="/tuigrid"> MASTER</router-link> 
       <div class="dropdown-content">
